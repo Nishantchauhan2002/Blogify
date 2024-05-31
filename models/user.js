@@ -60,11 +60,13 @@ userSchema.static("matchPassword", async function (email, password) {
   const hashedPassword = user.password;
 
   const userProvidedHash = createHmac("sha256", salt)
-    .update(user.password)
+    .update(password)
     .digest("hex");
 
-  if (userProvidedHash !== hashedPassword)
+  if (userProvidedHash !== hashedPassword) {
     throw new Error("Incorrect Password");
+  }
+
   return user;
 });
 const User = model("user", userSchema);
