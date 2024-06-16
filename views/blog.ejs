@@ -20,17 +20,20 @@
 
     <div class="container mt-3">
       <h1>Comments</h1>
-      <form action="/user/signin" method="post">
-        <div class="mb-3">
-          
-          <input
-            type="text"
-            class="form-control"
-            name="content"
-            placeholder="Enter your comment"
-          />
-         <button class="btn btn-sm btn-primary" type="submit">Add</button>
-        </div>
+      <% if(locals.user){%>
+        <form action="/blog/comment/<%= blog._id %>" method="post">
+          <div class="mb-3">
+            
+            <input
+              type="text"
+              class="form-control"
+              name="content"
+              placeholder="Enter your comment"
+            />
+           <button class="btn btn-sm btn-primary" type="submit">Add</button>
+          </div>
+          </form>
+      <%}%>
 
     </div>
     <%- include('./partials/script') %>
